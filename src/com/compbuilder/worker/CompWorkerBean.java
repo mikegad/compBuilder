@@ -18,7 +18,7 @@ public class CompWorkerBean
 	     {
 	         case "hardDrive1": hardDriveCost = hardDrive500GB;
 	                             break;
-	         case "hardDrove2": hardDriveCost = hardDrive240GB;
+	         case "hardDrive2": hardDriveCost = hardDrive240GB;
 	                             break;
 	     }
 		
@@ -48,11 +48,11 @@ public class CompWorkerBean
 		
 		switch(cpuName)
 	     {
-	         case "cpu1": memoryCost = cpu1GHz;
+	         case "cpu1": cpuCost = cpu1GHz;
 	                             break;
-	         case "cpu2": memoryCost = cpu2GHz;
+	         case "cpu2": cpuCost = cpu2GHz;
 	                             break;
-	         case "cpu3": memoryCost = cpu3GHz;
+	         case "cpu3": cpuCost = cpu3GHz;
              					break;
 	     }
 		
