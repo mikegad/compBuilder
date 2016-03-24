@@ -1,0 +1,29 @@
+#wrapper {
+	display: none
+}
+
+#D581:hover #wrapper {
+	position: absolute;
+	display: block;
+	left: 100px;
+	top: 150px;
+}
+
+
+.hover-group .image-wrapper {
+  /* We need this to make the .hover-toggle div relative to .image-wrapper */
+  position: relative;
+}
+
+.hover-group .image-wrapper .hover-toggle {
+  /* set it at the bottom of .image-wrapper */
+  position: absolute;      
+  bottom: 0;
+  /* and don't display it */
+  display: none;
+}
+
+.hover-group .image-wrapper:hover .hover-toggle {
+  /* only display it when .image-wrapper is being hovered on */
+  display: block;
+}
