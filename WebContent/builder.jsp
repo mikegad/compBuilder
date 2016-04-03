@@ -115,5 +115,10 @@
     </div>
 </div>
 
+<script>
+   var myValue = $(this).attr("data-image-attribute");
+   alert(myValue);
+</script>
+
 </body>
 </html>

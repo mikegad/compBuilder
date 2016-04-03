@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<jsp:useBean id="builtComputer" class="com.compbuilder.model.CompBean" scope="session" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
@@ -28,7 +31,6 @@
 
 </head>
 <body>
-
 <div>
 			<header>
 				<nav class="navbar navbar-default">
@@ -78,82 +80,51 @@
 			</header>
 </div>
 
-<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-2"><img width="90%" src="img/computer-154114_1280.png" />
-					</div>
-					<div class="col-md-2"><img width="90%" src="img/computer-158675_1280.png" />
-					</div>
-					<div class="col-md-2"><img width="70%" src="img/computer-158743_1280.png" />
-					</div>
-					<div class="col-md-2"><img width="100%" src="img/laptop-158648_1280.png" />
-					</div>
-					<div class="col-md-2"><img width="100%" src="img/laptop-158648_1280.png" />
-					</div>
-					<div class="col-md-2"><img width="80%" src="img/laptop-33521_1280.png" />
-					</div>
-				</div>
-				<div class="row text-center">
-					<div class="col-md-2" id="D5B1">
-						<h3><a href='d5b1.html'>D5B1 Series</a></h3>Starting at $699.99
-					</div>
-					<div class="col-md-2" id="D0B2">
-						<h3><a href='d0b2.html'>D0B2 Series</a></h3>Starting at $899.99
-					</div>
-					<div class="col-md-2" id="DDB3">
-						<h3><a href='ddb3.html'>DDB3 Series</a></h3>Starting at $999.99
-					</div>
-					<div class="col-md-2" id="L5B1">
-						<h3><a href='l5b1.html'>L5B1 Series</a></h3>Starting at $499.99
-					</div>
-					<div class="col-md-2" id="L0B2">
-						<h3><a href='l0b2.html'>L0B2 Series</a></h3>Starting at $599.99
-					</div>
-					<div class="col-md-2" id="LB32">
-						<h3><a href='lb32.html'>LB32 Series</a></h3>Starting at $899.99
-					</div>
-				</div>
-
-			</div>
-<br><br><br><br>
-
-
-
-
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <img src="img/laptop-33521_1280.png" height="620" width="620" class="img-responsive center-block">
+            <img src="<%= builtComputer.getModelImage() %>" height="620" width="620" class="img-responsive center-block">
         </div>
         <div class="col-md-6">
-            <p class="text-info">Power, price, and size. <br><br><b>LB32 Series Workstation</b><br><br>
-               The world’s number one ranked entry level workstations features a choice of Tower or SFF configurations.3 It just got better with the HP Z240 which packs the performance, features, and reliability of a workstation into the price point of a desktop PC.
-               <br><br>
-               <b>Starting at $899.99</b>
-               <br><br>
+            <form action="build" method="post">
+               <fieldset>
+                  <legend>CPU</legend>
+                  <input type="radio" name="cpustatus" value="cpu1" checked="checked">1GHz - $499.99
+                  <input type="radio" name="cpustatus" value="cpu2">2GHz - $799.99
+                  <input type="radio" name="cpustatus" value="cpu3">3GHz - $999.99
+               </fieldset>
                
-               <form action="buildModel" method="post">
-                  
-                   <input type="hidden" name="modelImage" value="img/laptop-33521_1280.png">
-                   <select name="modelName">
-<!--                       <option value="LB32-Configured">Buy Pre-Configured Version</option> -->
-                      <option value="LB32">LB32 - Configure to Order</option>
-                   </select>
-                      <input type="submit" value="Submit">
-               </form>
+               <fieldset>
+                  <legend>Hard Drive</legend>
+                  <input type="radio" name="harddrivestatus" value="hardDrive1" checked="checked">240GB - $199.99
+                  <input type="radio" name="harddrivestatus" value="hardDrive2">500GB - $399.99
+               </fieldset>
                
-               <!--
-                <div class="dropdown">
-                   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Shop Now
-                   <span class="caret"></span></button>
-                      <ul class="dropdown-menu">
-                         <li><a href="#">Buy Pre-configured version</a></li>
-                         <li><a href="#">LB32<br>Configure to Order</a></li>
-                       </ul>
-               </div> -->
+               <fieldset>
+                  <legend>Memory</legend>
+                  <input type="radio" name="memorystatus" value="memory1" checked="checked">4GB - $199.99
+                  <input type="radio" name="memorystatus" value="memory2">8GB - $399.99
+                  <input type="radio" name="memorystatus" value="memory3">16GB - $599.99
+               </fieldset>
+               
+               <br><br>
+                <fieldset>
+                  <legend>Base Price</legend>
+                  <input type="hidden" name="modelName" value="<%= builtComputer.getModelName() %>">
+                  <input type="hidden" name="basePrice" value="<%= builtComputer.getBasePrice() %>">
+                  <input type="hidden" name="modelImage" value="<%= builtComputer.getModelImage() %>">
+                  <p> Base Price is $<%= builtComputer.getBasePrice() %>
+               </fieldset>
+               
+               <br><br><br>
+             <button type="submit">Compute PC Costs</button>
+             
+            </form>
+            
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

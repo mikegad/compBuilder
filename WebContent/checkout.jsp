@@ -83,10 +83,54 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <img src="img/computer-154114_1280.png" height="620" width="620" class="img-responsive center-block">
+            <img src="<%= builtComputer.getModelImage() %>" height="620" width="620" class="img-responsive center-block">
         </div>
         <div class="col-md-6">
-            <p> Total Cost is $<%= builtComputer.getTotalCost() %>
+            <form action="index.html" method="post">
+            
+               <fieldset>
+                  <legend>Model</legend>
+                  <p>
+                     <%= builtComputer.getModelName() %>
+                  </p>
+               </fieldset>
+               
+               <fieldset>
+                  <legend>CPU</legend>
+                  <p>
+                     <%= builtComputer.getCpuDescription() %>
+                  </p>
+               </fieldset>
+               
+               <fieldset>
+                  <legend>Hard Drive</legend>
+                  <p>
+                     <%= builtComputer.getHardDriveDescription() %>
+                  </p>
+               </fieldset>
+               
+               <fieldset>
+                  <legend>Memory</legend>
+                  <p>
+                     <%= builtComputer.getMemoryDescription() %>
+                  </p>
+               </fieldset>
+               
+               <br><br>
+                <fieldset>
+                  <legend>Total Cost</legend>
+                  <input type="hidden" name="basePrice" value="<%= builtComputer.getBasePrice() %>">
+                  <input type="hidden" name="modelImage" value="<%= builtComputer.getModelImage() %>">
+                  <p> Total Cost is $<%= builtComputer.getTotalCost() %>
+               </fieldset>
+               
+               <br><br><br>
+             <button type="submit">Add To Cart</button>
+             
+             <button type="submit">Checkout</button>
+             
+            </form>
+            
         </div>
     </div>
 </div>

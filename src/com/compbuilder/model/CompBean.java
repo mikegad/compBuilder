@@ -37,10 +37,64 @@ public class CompBean
 	{
 		this.memoryCost = memoryCost;
 	}
+	public double getBasePrice()
+	{
+		return this.basePrice;
+	}
+	public void setBasePrice(double basePrice)
+	{
+		this.basePrice = basePrice;
+	}
+	public String getModelImage()
+	{
+		return this.modelImage;
+	}
+	public void setModelImage(String modelImage)
+	{
+		this.modelImage = modelImage;
+	}
+	public String getCpuDescription()
+	{
+		return this.cpuDescription;
+	}
+	public void setCpuDescription(String cpuDescription)
+	{
+		this.cpuDescription = cpuDescription;
+	}
+	public String getHardDriveDescription()
+	{
+		return this.hardDriveDescription;
+	}
+	public void setHardDriveDescription(String hardDriveDescription)
+	{
+		this.hardDriveDescription = hardDriveDescription;
+	}
+	public String getMemoryDescription()
+	{
+		return this.memoryDescription;
+	}
+	public void setMemoryDescription(String memoryDescription)
+	{
+		this.memoryDescription = memoryDescription;
+	}
+	public String getModelName()
+	{
+		return this.modelName;
+	}
+	public void setModelName(String modelName)
+	{
+		this.modelName = modelName;
+	}
 	
 	double hardDriveCost;
 	double cpuCost;
 	double memoryCost;
 	double totalCost;
+	double basePrice;
+	String modelImage;
+	String cpuDescription;
+	String memoryDescription;
+	String hardDriveDescription;
+	String modelName;
 
 }
