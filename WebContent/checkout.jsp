@@ -98,21 +98,21 @@
                <fieldset>
                   <legend>CPU</legend>
                   <p>
-                     <%= builtComputer.getCpuDescription() %>
+                     <%= builtComputer.getCpuDescription() %> only for <b>$<%= builtComputer.getCpuCost() %></b>
                   </p>
                </fieldset>
                
                <fieldset>
                   <legend>Hard Drive</legend>
                   <p>
-                     <%= builtComputer.getHardDriveDescription() %>
+                     <%= builtComputer.getHardDriveDescription() %> only for <b>$<%= builtComputer.getHardDriveCost() %></b>
                   </p>
                </fieldset>
                
                <fieldset>
                   <legend>Memory</legend>
                   <p>
-                     <%= builtComputer.getMemoryDescription() %>
+                     <%= builtComputer.getMemoryDescription() %> only for <b>$<%= builtComputer.getMemoryCost() %></b>
                   </p>
                </fieldset>
                
@@ -121,7 +121,7 @@
                   <legend>Total Cost</legend>
                   <input type="hidden" name="basePrice" value="<%= builtComputer.getBasePrice() %>">
                   <input type="hidden" name="modelImage" value="<%= builtComputer.getModelImage() %>">
-                  <p> Total Cost is $<%= builtComputer.getTotalCost() %>
+                  <p> Total Cost is <b>$<%= builtComputer.getTotalCost() %></b>
                </fieldset>
                
                <br><br><br>

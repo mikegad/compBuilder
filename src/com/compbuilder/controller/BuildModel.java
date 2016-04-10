@@ -41,6 +41,9 @@ public class BuildModel extends HttpServlet {
 		compBean.setBasePrice(worker.processBasePrice(request));
 		compBean.setModelImage(worker.processModelImage(request));
 		compBean.setModelName(worker.processModelName(request));
+		compBean.setStandardCPU(worker.processStandardCPU(request));
+		compBean.setStandardHardDrive(worker.processStandardHardDrive(request));
+		compBean.setStandardMemory(worker.processStandardMemory(request));
 		
 		session.setAttribute("builtComputer", compBean);
 		

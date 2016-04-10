@@ -89,12 +89,39 @@ public class CompBean
 	{
 		this.modelName = modelName;
 	}
+	public double getStandardCPU()
+	{
+		return this.standardCPU;
+	}
+	public void setStandardCPU(double standardCPU)
+	{
+		this.standardCPU = standardCPU;
+	}
+	public double getStandardHardDrive()
+	{
+		return this.standardHardDrive;
+	}
+	public void setStandardHardDrive(double standardHardDrive)
+	{
+		this.standardHardDrive = standardHardDrive;
+	}
+	public double getStandardMemory()
+	{
+		return this.standardMemory;
+	}
+	public void setStandardMemory(double standardMemory)
+	{
+		this.standardMemory = standardMemory;
+	}
 	
 	double hardDriveCost;
 	double cpuCost;
 	double memoryCost;
 	double totalCost;
 	double basePrice;
+	double standardCPU;
+	double standardHardDrive;
+	double standardMemory;
 	String modelImage;
 	String cpuDescription;
 	String memoryDescription;
