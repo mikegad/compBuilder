@@ -111,8 +111,17 @@ public class CompWorkerBean
 	
 	public double calculateTotalCost(HttpServletRequest request) throws Exception
 	{
-		totalCost = hardDriveCost + memoryCost + cpuCost + basePrice;
+		String modelCheck = request.getParameter("modelName");
 		
+		if (modelCheck.contains("D"))
+		{
+			totalCost = hardDriveCost + memoryCost + cpuCost;
+		}
+		else
+		{
+			totalCost = hardDriveCost + memoryCost + cpuCost + laptopCost;
+		}
+			
 		return totalCost;
 	}
 	
@@ -122,17 +131,17 @@ public class CompWorkerBean
 		
 		switch(modelName)
 	     {
-	         case "D5B1": basePrice = d5b1BasePrice;
+	         case "D5B1": basePrice = cpu1GHz + hardDrive240GB + memory4GB;
 	                             break;
-	         case "D0B2": basePrice = d0b2BasePrice;
+	         case "D0B2": basePrice = cpu2GHz + hardDrive500GB + memory8GB;
 	                             break;
-	         case "DDB3": basePrice = ddb3BasePrice;
+	         case "DDB3": basePrice = cpu3GHz + hardDrive500GB + memory16GB;
              					break;
-	         case "L5B1": basePrice = l5b1BasePrice;
+	         case "L5B1": basePrice = cpu1GHz + hardDrive240GB + memory4GB + laptopCost;
 				break;
-	         case "L0B2": basePrice = l0b2BasePrice;
+	         case "L0B2": basePrice = cpu2GHz + hardDrive500GB + memory8GB + laptopCost;
 				break;
-	         case "LB32": basePrice = lb32BasePrice;
+	         case "LB32": basePrice = cpu3GHz + hardDrive500GB + memory16GB + laptopCost;
 				break;
 	     }
 		
@@ -167,11 +176,85 @@ public class CompWorkerBean
 		return modelName;
 	}
 	
+	public double processStandardCPU(HttpServletRequest request)
+	{
+		 modelName = request.getParameter("modelName");
+			
+			switch(modelName)
+		     {
+		         case "D5B1": standardCPU = cpu1GHz;
+		                             break;
+		         case "D0B2": standardCPU = cpu2GHz;
+		                             break;
+		         case "DDB3": standardCPU = cpu3GHz;
+	             					break;
+		         case "L5B1": standardCPU = cpu1GHz;
+					break;
+		         case "L0B2": standardCPU= cpu2GHz;
+					break;
+		         case "LB32": standardCPU = cpu3GHz;
+					break;
+		     }
+			
+			return standardCPU;
+		
+	}
+	
+	public double processStandardHardDrive(HttpServletRequest request)
+	{
+		 modelName = request.getParameter("modelName");
+			
+			switch(modelName)
+		     {
+		         case "D5B1": standardHardDrive = hardDrive240GB;
+		                             break;
+		         case "D0B2": standardHardDrive = hardDrive500GB;
+		                             break;
+		         case "DDB3": standardHardDrive = hardDrive500GB;
+	             					break;
+		         case "L5B1": standardHardDrive = hardDrive240GB;
+					break;
+		         case "L0B2": standardHardDrive = hardDrive500GB;
+					break;
+		         case "LB32": standardHardDrive = hardDrive500GB;
+					break;
+		     }
+			
+			return standardHardDrive;
+		
+	}
+	
+	public double processStandardMemory(HttpServletRequest request)
+	{
+		 modelName = request.getParameter("modelName");
+			
+			switch(modelName)
+		     {
+		         case "D5B1": standardMemory = memory4GB;
+		                             break;
+		         case "D0B2": standardMemory = memory8GB;
+		                             break;
+		         case "DDB3": standardMemory = memory16GB;
+	             					break;
+		         case "L5B1": standardMemory = memory4GB;
+					break;
+		         case "L0B2": standardMemory = memory8GB;
+					break;
+		         case "LB32": standardMemory = memory16GB;
+					break;
+		     }
+			
+			return standardMemory;
+		
+	}
 	double totalCost;
 	double hardDriveCost;
 	double memoryCost;
 	double cpuCost;
 	double basePrice;
+	double standardCPU;
+	double standardHardDrive;
+	double standardMemory;
 	String hardDriveName;
 	String memoryName;
 	String cpuName;
@@ -189,13 +272,7 @@ public class CompWorkerBean
 	private static final double cpu1GHz = 499.99;
 	private static final double cpu2GHz = 799.99;
 	private static final double cpu3GHz = 999.99;
-	
-	private static final double d5b1BasePrice = 399.99;
-	private static final double d0b2BasePrice = 499.99;
-	private static final double ddb3BasePrice = 599.99;
-	private static final double l5b1BasePrice = 299.99;
-	private static final double l0b2BasePrice = 399.99;
-	private static final double lb32BasePrice = 499.99;
+	private static final double laptopCost = 199.99;
 	
 	private static final String hardDrive500GBDescription = "500GB Hard Drive";
 	private static final String hardDrive240GBDescription = "240GB Hard Drive";
