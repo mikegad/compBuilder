@@ -127,7 +127,8 @@ public class CompWorkerBean
 	
 	public double processBasePrice(HttpServletRequest request)
 	{
-        modelName = request.getParameter("modelName");
+		String tempModel = request.getParameter("modelName");
+		modelName = tempModel.substring(0,4);
 		
 		switch(modelName)
 	     {
@@ -170,15 +171,17 @@ public class CompWorkerBean
 	
 	public String processModelName(HttpServletRequest request)
 	{
-        String modelName = request.getParameter("modelName");
-		
+		String tempModel = request.getParameter("modelName");
+		String modelName = tempModel.substring(0,4);
 		
 		return modelName;
 	}
 	
 	public double processStandardCPU(HttpServletRequest request)
 	{
-		 modelName = request.getParameter("modelName");
+		String tempModel = request.getParameter("modelName");
+		modelName = tempModel.substring(0,4);
+		// modelName = request.getParameter("modelName");
 			
 			switch(modelName)
 		     {
@@ -196,13 +199,14 @@ public class CompWorkerBean
 					break;
 		     }
 			
-			return standardCPU;
-		
+			return standardCPU;	
 	}
 	
 	public double processStandardHardDrive(HttpServletRequest request)
 	{
-		 modelName = request.getParameter("modelName");
+		String tempModel = request.getParameter("modelName");
+		modelName = tempModel.substring(0,4);
+		 // modelName = request.getParameter("modelName");
 			
 			switch(modelName)
 		     {
@@ -226,7 +230,9 @@ public class CompWorkerBean
 	
 	public double processStandardMemory(HttpServletRequest request)
 	{
-		 modelName = request.getParameter("modelName");
+		String tempModel = request.getParameter("modelName");
+		modelName = tempModel.substring(0,4);
+		 // modelName = request.getParameter("modelName");
 			
 			switch(modelName)
 		     {
@@ -247,6 +253,82 @@ public class CompWorkerBean
 			return standardMemory;
 		
 	}
+	
+	public String setConfiguredCpuDescription(HttpServletRequest request) throws Exception
+	{
+		String tempModel = request.getParameter("modelName");
+		modelName = tempModel.substring(0,4);
+		// cpuName = request.getParameter("cpustatus");
+		
+		switch(modelName)
+	     {
+	         case "D5B1": cpuDescription = cpu1GHzDescription;
+	                             break;
+	         case "D0B2": cpuDescription = cpu2GHzDescription;
+	                             break;
+	         case "DDB3": cpuDescription = cpu3GHzDescription;
+             					break;
+	         case "L5B1": cpuDescription = cpu1GHzDescription;
+             					break;
+             case "L0B2": cpuDescription = cpu2GHzDescription;
+             					break;
+             case "LB32": cpuDescription = cpu3GHzDescription;
+								break;
+	     }
+		
+		return cpuDescription;
+	}
+	
+	public String setConfiguredHardDriveDescription(HttpServletRequest request) throws Exception
+	{
+		String tempModel = request.getParameter("modelName");
+		modelName = tempModel.substring(0,4);
+		// cpuName = request.getParameter("cpustatus");
+		
+		switch(modelName)
+	     {
+	         case "D5B1": hardDriveDescription = hardDrive240GBDescription;
+	                             break;
+	         case "D0B2": hardDriveDescription = hardDrive500GBDescription;
+	                             break;
+	         case "DDB3": hardDriveDescription = hardDrive500GBDescription;
+             					break;
+	         case "L5B1": hardDriveDescription = hardDrive240GBDescription;
+             					break;
+	         case "L0B2": hardDriveDescription = hardDrive500GBDescription;
+             					break;
+	         case "LB32": hardDriveDescription = hardDrive500GBDescription;
+	         					break;
+	     }
+		
+		return hardDriveDescription;
+	}
+	
+	public String setConfiguredMemoryDescription(HttpServletRequest request) throws Exception
+	{
+		String tempModel = request.getParameter("modelName");
+		modelName = tempModel.substring(0,4);
+		// cpuName = request.getParameter("cpustatus");
+		
+		switch(modelName)
+	     {
+	         case "D5B1": memoryDescription = memory4GBDescription;
+	                             break;
+	         case "D0B2": memoryDescription = memory8GBDescription;
+	                             break;
+	         case "DDB3": memoryDescription = memory16GBDescription;
+             					break;
+	         case "L5B1": memoryDescription = memory4GBDescription;
+             					break;
+	         case "L0B2": memoryDescription = memory8GBDescription;
+             					break;
+	         case "LB32": memoryDescription = memory16GBDescription;
+	         					break;
+	     }
+		
+		return memoryDescription;
+	}
+	
 	double totalCost;
 	double hardDriveCost;
 	double memoryCost;

@@ -33,6 +33,17 @@ public class BuildModel extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{	
+		boolean buildPreConfiguredVersion;
+		if (request.getParameter("modelName").contains("Configured"))
+		{
+			buildPreConfiguredVersion = true;
+		}
+		else
+		{
+			buildPreConfiguredVersion = false;
+		}
+		
+		
 		HttpSession session = request.getSession();
 		CompWorkerBean worker = new CompWorkerBean();
 		
@@ -47,10 +58,33 @@ public class BuildModel extends HttpServlet {
 		
 		session.setAttribute("builtComputer", compBean);
 		
-		RequestDispatcher dispatcher = getServletConfig().getServletContext().getRequestDispatcher("/base.jsp");
-		
-		dispatcher.forward(request, response);
-		
+		if (buildPreConfiguredVersion)
+		{
+			compBean.setCpuCost(compBean.getStandardCPU());
+			compBean.setHardDriveCost(compBean.getStandardHardDrive());
+			compBean.setMemoryCost(compBean.getStandardMemory());
+			try 
+			{
+				compBean.setTotalCost(compBean.getBasePrice());
+				compBean.setCpuDescription(worker.setConfiguredCpuDescription(request));
+				compBean.setHardDriveDescription(worker.setConfiguredHardDriveDescription(request));
+				compBean.setMemoryDescription(worker.setConfiguredMemoryDescription(request));
+			}
+			catch (Exception e)
+			{
+				
+			}
+			
+			
+			RequestDispatcher dispatcher = getServletConfig().getServletContext().getRequestDispatcher("/checkout.jsp");
+			dispatcher.forward(request, response);
+		}
+		else
+		{
+			RequestDispatcher dispatcher = getServletConfig().getServletContext().getRequestDispatcher("/base.jsp");
+			dispatcher.forward(request, response);
+		}
+			
 	}
 
 	/**

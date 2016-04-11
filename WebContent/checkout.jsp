@@ -90,8 +90,9 @@
             
                <fieldset>
                   <legend>Model</legend>
-                  <p>
+                  <p><b>
                      <%= builtComputer.getModelName() %>
+                     </b>
                   </p>
                </fieldset>
                
