@@ -10,8 +10,7 @@
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>index</title>
-		<meta name="description" content="">
+<title>CompBuilder</title>		<meta name="description" content="">
 		<meta name="author" content="Sam Rodens">
 
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
@@ -43,7 +42,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="#">CompBuilder</a>
+							<a class="navbar-brand" href="/CompBuilder">CompBuilder</a>
 						</div>
 
 						<!-- Collect the nav links, forms, and other content for toggling -->
@@ -65,13 +64,13 @@
 
 								</ul>
 								<li>
-									<a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+									<a href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
 								</li>
 								<li>
 									<a href="#">Order History</span></a>
 								</li>
 								<li>
-									<a href="#">Customer Service</span></a>
+									<a href="customerservice.html">Customer Service</span></a>
 								</li>
 							</ul>
 						</div><!-- /.navbar-collapse -->
@@ -89,22 +88,53 @@
             <form action="build" method="post">
                <fieldset>
                   <legend>CPU</legend>
-                  <input type="radio" name="cpustatus" value="cpu1" checked="checked">1GHz - $499.99
-                  <input type="radio" name="cpustatus" value="cpu2">2GHz - $799.99
-                  <input type="radio" name="cpustatus" value="cpu3">3GHz - $999.99
+                  <% if (499.99 - builtComputer.getStandardCPU() == 0) { %>
+                    
+                     <input type="radio" name="cpustatus" value="cpu1" checked="checked">1GHz Quad-Core Processor: <b>Included in price</b><br>
+                     <input type="radio" name="cpustatus" value="cpu2">2GHz Quad-Core Processor: <b>+$<%= 799.99 - builtComputer.getStandardCPU() %></b><br>
+                     <input type="radio" name="cpustatus" value="cpu3">3GHz Quad-Core Processor: <b>+$<%= 999.99 - builtComputer.getStandardCPU() %></b>
+                     <% } %>
+                  <% if (799.99 - builtComputer.getStandardCPU() == 0)  { %>
+                     <input type="radio" name="cpustatus" value="cpu1" >1GHz Quad-Core Processor: <b>-$<%= builtComputer.getStandardCPU() - 499.99%></b><br>
+                     <input type="radio" name="cpustatus" value="cpu2" checked="checked">2GHz Quad-Core Processor: <b>Included in price</b><br>
+                     <input type="radio" name="cpustatus" value="cpu3">3GHz Quad-Core Processor: <b>+$<%= 999.99 - builtComputer.getStandardCPU() %></b>
+                     <% } %>
+                  <% if (999.99 - builtComputer.getStandardCPU() == 0) { %>
+                     <input type="radio" name="cpustatus" value="cpu1" >1GHz Quad-Core Processor: <b>-$<%= builtComputer.getStandardCPU() - 499.99%></b><br>
+                     <input type="radio" name="cpustatus" value="cpu2" >2GHz Quad-Core Processor: <b>-$<%= builtComputer.getStandardCPU() - 799.99 %></b><br>
+                     <input type="radio" name="cpustatus" value="cpu3" checked="checked">3GHz Quad-Core Processor: <b>Included in price</b>
+                     <% } %>
                </fieldset>
                
                <fieldset>
                   <legend>Hard Drive</legend>
-                  <input type="radio" name="harddrivestatus" value="hardDrive1" checked="checked">240GB - $199.99
-                  <input type="radio" name="harddrivestatus" value="hardDrive2">500GB - $399.99
+                  <% if (199.99 - builtComputer.getStandardHardDrive() == 0) { %>
+                     <input type="radio" name="harddrivestatus" value="hardDrive1" checked="checked">240GB Hard Drive: <b>Included in price</b><br>
+                     <input type="radio" name="harddrivestatus" value="hardDrive2">500GB Hard Drive: <b>+$<%= 399.99 - builtComputer.getStandardHardDrive() %></b>
+                     <% } %>
+                  <% if  (399.99 - builtComputer.getStandardHardDrive() == 0) { %>
+                      <input type="radio" name="harddrivestatus" value="hardDrive1" >240GB Hard Drive: <b>-$<%= builtComputer.getStandardHardDrive() - 199.99 %></b><br>
+                      <input type="radio" name="harddrivestatus" value="hardDrive2" checked="checked">500GB Hard Drive: <b>Included in price</b>
+                      <% } %>
                </fieldset>
                
                <fieldset>
                   <legend>Memory</legend>
-                  <input type="radio" name="memorystatus" value="memory1" checked="checked">4GB - $199.99
-                  <input type="radio" name="memorystatus" value="memory2">8GB - $399.99
-                  <input type="radio" name="memorystatus" value="memory3">16GB - $599.99
+                  <% if (199.99 - builtComputer.getStandardMemory() == 0) { %>
+                     <input type="radio" name="memorystatus" value="memory1" checked="checked">4GB RAM:  <b>Included in price</b><br>
+                     <input type="radio" name="memorystatus" value="memory2">8GB RAM: <b>+$<%= 399.99 - builtComputer.getStandardMemory() %></b><br>
+                     <input type="radio" name="memorystatus" value="memory3">16GB RAM: <b>+$<%= 599.99 - builtComputer.getStandardMemory() %></b>
+                     <% } %>
+                  <% if (399.99 - builtComputer.getStandardMemory() == 0) { %>
+                     <input type="radio" name="memorystatus" value="memory1" >4GB RAM: <b>-$<%= builtComputer.getStandardMemory() - 199.99 %></b><br>
+                     <input type="radio" name="memorystatus" value="memory2" checked="checked" >8GB RAM: <b>Included in price</b><br>
+                     <input type="radio" name="memorystatus" value="memory3">16GB RAM: <b>+$<%= 599.99 - builtComputer.getStandardMemory() %></b>
+                     <% } %>
+                  <% if (599.99 - builtComputer.getStandardMemory() == 0) { %>
+                     <input type="radio" name="memorystatus" value="memory1" >4GB RAM: <b>-$<%= builtComputer.getStandardMemory() - 199.99 %></b><br>
+                     <input type="radio" name="memorystatus" value="memory2"  >8GB RAM: <b>-$<%= builtComputer.getStandardMemory() - 399.99 %></b><br>
+                     <input type="radio" name="memorystatus" value="memory3" checked="checked" >16GB RAM: <b>Included in price</b>
+                     <% } %> 
                </fieldset>
                
                <br><br>
@@ -113,11 +143,11 @@
                   <input type="hidden" name="modelName" value="<%= builtComputer.getModelName() %>">
                   <input type="hidden" name="basePrice" value="<%= builtComputer.getBasePrice() %>">
                   <input type="hidden" name="modelImage" value="<%= builtComputer.getModelImage() %>">
-                  <p> Base Price is $<%= builtComputer.getBasePrice() %>
+                  <p> Base Price is <b>$<%= builtComputer.getBasePrice() %></b>
                </fieldset>
                
                <br><br><br>
-             <button type="submit">Compute PC Costs</button>
+             <button type="submit" class="btn btn-primary" >Compute PC Costs</button>
              
             </form>
             

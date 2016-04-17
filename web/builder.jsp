@@ -9,8 +9,7 @@
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>index</title>
-		<meta name="description" content="">
+<title>CompBuilder</title>		<meta name="description" content="">
 		<meta name="author" content="Sam Rodens">
 
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
@@ -42,7 +41,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="#">CompBuilder</a>
+							<a class="navbar-brand" href="/CompBuilder">CompBuilder</a>
 						</div>
 
 						<!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,13 +63,13 @@
 
 								</ul>
 								<li>
-									<a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+									<a href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
 								</li>
 								<li>
 									<a href="#">Order History</span></a>
 								</li>
 								<li>
-									<a href="#">Customer Service</span></a>
+									<a href="customerservice.html">Customer Service</span></a>
 								</li>
 							</ul>
 						</div><!-- /.navbar-collapse -->
@@ -107,7 +106,7 @@
                </fieldset>
                
                <br><br><br>
-             <button type="submit">Compute PC Costs</button>
+             <button type="submit" class="btn btn-primary">Compute PC Costs</button>
              
             </form>
             

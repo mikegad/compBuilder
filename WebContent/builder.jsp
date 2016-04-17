@@ -9,8 +9,7 @@
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>index</title>
-		<meta name="description" content="">
+<title>CompBuilder</title>		<meta name="description" content="">
 		<meta name="author" content="Sam Rodens">
 
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
@@ -64,7 +63,7 @@
 
 								</ul>
 								<li>
-									<a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+									<a href="cart.jsp"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
 								</li>
 								<li>
 									<a href="#">Order History</span></a>

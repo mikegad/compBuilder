@@ -1,6 +1,7 @@
 package com.compbuilder.controller;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,22 +11,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.compbuilder.model.CompBean;
-import com.compbuilder.model.Cart;
-import com.compbuilder.worker.CompWorkerBean;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * Servlet implementation class BuildServlet
  */
-@WebServlet("/cart")
-public class CartController extends HttpServlet {
+@WebServlet("/customerservice")
+public class CustomerService extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CartController() {
+    public CustomerService() {
         super();
 
     }
@@ -45,38 +50,42 @@ public class CartController extends HttpServlet {
          * @see HttpServlet#doGet(HttpServletRequest request,
          * HttpServletResponse response)
          */
-        String delete = request.getParameter("delete");
-        String submit = request.getParameter("Submit");
+        String name = request.getParameter("Name");
+        String email = request.getParameter("email");
+        String comments = request.getParameter("comments");
+        final String username = "rodenstest@gmail.com";
+        final String password = "Ooju9aix";
 
-        if (delete == null) {
-            HttpSession session = request.getSession();
-            Cart cart = (Cart) session.getAttribute("Cart");
-            CompBean compBean = (CompBean) session.getAttribute("builtComputer");
-            if (cart == null) {
-                cart = new Cart();
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session mailsession = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
             }
+        });
 
-            cart.addItem(compBean);
+        try {
 
-            session.setAttribute("Cart", cart);
+            Message message = new MimeMessage(mailsession);
+            message.setFrom(new InternetAddress(email));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse("rodenstest@gmail.com"));
+            message.setReplyTo(InternetAddress.parse(email));
+            message.setSubject("Support Email");
+            message.setText(name + " has sent the following message: " + comments);
 
-            if (submit.equals("Add")) {
-                response.sendRedirect("index.html");
-            } else if (submit.equals("Checkout")) {
-                response.sendRedirect("cart.jsp");
-            }
+            Transport.send(message);
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
         }
-        else {
-            HttpSession session = request.getSession();
-            int intDelete=Integer.parseInt(delete);
-            Cart cart = (Cart) session.getAttribute("Cart");
-            //remove the item
-            cart.removeItem(intDelete);
-            //set the session
-            session.setAttribute("Cart", cart);
-            //redirect back to cart
-            response.sendRedirect("cart.jsp");
-        }
+        response.sendRedirect("gotmessage.html");
 
     }
 

@@ -73,10 +73,6 @@ public class CompBean
 	{
 		return this.memoryDescription;
 	}
-        public String getStandardCPU()
-	{
-		return this.cpuDescription;
-	}
 	public void setMemoryDescription(String memoryDescription)
 	{
 		this.memoryDescription = memoryDescription;

@@ -72,7 +72,7 @@
                                     <a href="#">Order History</span></a>
                                 </li>
                                 <li>
-                                    <a href="#">Customer Service</span></a>
+                                    <a href="customerservice.html">Customer Service</span></a>
                                 </li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
@@ -84,10 +84,15 @@
         <div class="container">
             <h2>Shopping Cart</h2>
             <table class="table-hover table">
-                <thead><tr><th>Model Name</th><th>CPU</th><th>Memory</th><th>Hard Drive</th><th>Cost</th></tr></thead>
-                            <% for (CompBean item : Cart.getItems()) {%>
-                <tr><td><%=item.getModelName()%></td><td><%=item.getCpuDescription()%></td><td><%=item.getMemoryDescription()%></td><td><%=item.getHardDriveDescription()%></td><td>$<%=item.getTotalCost()%></td></tr>
-                <% }%>
+                <thead><tr><th></th><th>Model Name</th><th>CPU</th><th>Memory</th><th>Hard Drive</th><th>Cost</th><th>Remove</th></tr></thead>
+                            <% int i=0; for (CompBean item : Cart.getItems()) {%>
+                <tr><td><img src="<%=item.getModelImage()%>" class="img-responsive" style="max-height: 10%"/></td><td><%=item.getModelName()%></td><td><%=item.getCpuDescription()%></td><td><%=item.getMemoryDescription()%></td><td><%=item.getHardDriveDescription()%></td><td>$<%=item.getTotalCost()%></td>
+                    <td><form id="remove_<%=i%>" action="cart">
+                            <input type="hidden" name="delete" value="<%=i%>"> <button type="submit" value="remove item" class="btn btn-danger">Remove Computer</button>
+                        </form>
+                    </td>
+                </tr>
+                <% i++; }%>
             </table>
             <table>
                 <tr><td class="col-md-9"></td><td class="col-md-1 text-right"> SubTotal: </td><td class="col-md-1">$<%=Cart.subTotaltoString()%></td>
