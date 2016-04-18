@@ -70,8 +70,7 @@ public class FinalizePurchase extends HttpServlet
 		String zip = request.getParameter("zip");
 		String creditCardOwner = request.getParameter("card-holder-name");
 		String creditCardNumber = request.getParameter("card-number");
-		String expirationMonth = request.getParameter("expiry-month");
-		String expirationYear = request.getParameter("expiry-year");
+		String expirationdDate = request.getParameter("expirationdate");
 		String cvv = request.getParameter("cvv");
 		
 		String name1 = request.getParameter("Name");
